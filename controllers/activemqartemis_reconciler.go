@@ -721,7 +721,7 @@ func (reconciler *ActiveMQArtemisReconcilerImpl) generateAcceptorsString(customR
 	ensureCOREOn61616Exists := true // as clustered is no longer an option but true by default
 
 	acceptorEntry := ""
-	defaultArgs := "tcpSendBufferSize=1048576;tcpReceiveBufferSize=1048576;useEpoll=true;amqpCredits=1000;amqpMinCredits=300"
+	defaultArgs := "useEpoll=true;amqpCredits=1000;amqpMinCredits=300"
 
 	var portIncrement int32 = 10
 	var currentPortIncrement int32 = 0
@@ -802,6 +802,16 @@ func (reconciler *ActiveMQArtemisReconcilerImpl) generateAcceptorsString(customR
 		}
 		if acceptor.SuppressInternalManagementObjects != nil {
 			acceptorEntry = acceptorEntry + ";" + "suppressInternalManagementObjects=" + strconv.FormatBool(*acceptor.SuppressInternalManagementObjects)
+		}
+		if acceptor.TcpSendBufferSize > 0 {
+			acceptorEntry = acceptorEntry + ";" + "tcpSendBufferSize=" + fmt.Sprintf("%d", acceptor.TcpSendBufferSize)
+		} else {
+			acceptorEntry = acceptorEntry + ";" + "tcpSendBufferSize=1048576"
+		}
+		if acceptor.TcpReceiveBufferSize > 0 {
+			acceptorEntry = acceptorEntry + ";" + "tcpReceiveBufferSize=" + fmt.Sprintf("%d", acceptor.TcpReceiveBufferSize)
+		} else {
+			acceptorEntry = acceptorEntry + ";" + "tcpReceiveBufferSize=1048576"
 		}
 		acceptorEntry = acceptorEntry + ";" + defaultArgs
 

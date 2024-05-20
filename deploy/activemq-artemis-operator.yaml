@@ -642,6 +642,12 @@ spec:
                     suppressInternalManagementObjects:
                       description: If prevents advisory addresses/queues to be registered to management service, default false
                       type: boolean
+                    tcpReceiveBufferSize:
+                      description: Size of the TCP receive buffer in bytes
+                      type: integer
+                    tcpSendBufferSize:
+                      description: Size of the TCP send buffer in bytes
+                      type: integer
                     trustSecret:
                       description: The name of the truststore secret.
                       type: string

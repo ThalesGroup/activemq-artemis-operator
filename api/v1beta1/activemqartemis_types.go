@@ -585,6 +585,12 @@ type AcceptorType struct {
 	// The name of the truststore secret.
 	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Trust Secret",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:text"}
 	TrustSecret *string `json:"trustSecret,omitempty"`
+	// Size of the TCP send buffer in bytes
+	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="TCP Send Buffer Size",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:number"}
+	TcpSendBufferSize int `json:"tcpSendBufferSize,omitempty"`
+	// Size of the TCP receive buffer in bytes
+	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="TCP Send Buffer Size",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:number"}
+	TcpReceiveBufferSize int `json:"tcpReceiveBufferSize,omitempty"`
 }
 
 type ConnectorType struct {
